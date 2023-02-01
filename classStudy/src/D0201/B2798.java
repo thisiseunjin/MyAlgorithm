@@ -29,7 +29,7 @@ public class B2798 {
 		}
 		
 		
-		
+		 
 		search(0);
 		System.out.println(sum);
 		
