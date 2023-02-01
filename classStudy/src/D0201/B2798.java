@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class B2798 {
-	static int N;
+	static int N; 
 	static int M;
 	static int result[] = new int [3];
 	static int sum=0;
