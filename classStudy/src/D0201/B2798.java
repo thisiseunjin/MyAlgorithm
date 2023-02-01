@@ -28,7 +28,7 @@ public class B2798 {
 			nums[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		
+		 
 		 
 		search(0);
 		System.out.println(sum);
