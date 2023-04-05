@@ -56,9 +56,13 @@ public class Main {
 //            if (count[c] == 0) diffCount++;
 //            resultMAX = Math.max(resultMAX, diffCount);
             //서비스 초밥이 경우가 다를 경우 diffcount가 늘어남
-            if (count[c] == 0)
-                resultMAX = Math.max(resultMAX, diffCount+1);
-            else resultMAX = Math.max(resultMAX, diffCount);
+//            if (count[c] == 0)
+//                resultMAX = Math.max(resultMAX, diffCount+1);
+//            else resultMAX = Math.max(resultMAX, diffCount);
+            if (resultMAX-1<= diffCount) {
+                if (count[c] == 0) resultMAX = Math.max(resultMAX, diffCount + 1);
+                else resultMAX = Math.max(resultMAX, diffCount);
+            }
         }
 
         System.out.println(resultMAX);
