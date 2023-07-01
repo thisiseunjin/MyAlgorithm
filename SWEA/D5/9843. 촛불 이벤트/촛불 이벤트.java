@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 
 public class Solution {
     static int T;
-    //static StringBuilder sb = new StringBuilder();
+    static StringBuilder sb = new StringBuilder();
     static long N;
 
     public static void main(String[] args) throws IOException {
@@ -12,7 +12,7 @@ public class Solution {
         T = Integer.parseInt(br.readLine());
 
         for (int test = 1; test < T + 1; test++) {
-            //sb.append("#" + test + " ");
+            sb.append("#" + test).append(" ");
             N = Long.parseLong(br.readLine());
 
             long left = 1;
@@ -37,9 +37,9 @@ public class Solution {
                 result = -1;
             }
 
-            System.out.printf("#%d %d\n", test, result);
+            sb.append((int)result + "\n");
         }
 
-
+        System.out.print(sb);
     }
 }
