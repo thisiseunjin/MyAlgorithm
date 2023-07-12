@@ -1,51 +1,45 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
+    static int N, M;
+    static int[] nums;
+    static int count = 0;
 
-    static int N,M;
-    static int num[];
-
-
-    public static void main(String[] args) throws Exception {
-       // System.setIn(new FileInputStream("C:\\Users\\User\\IdeaProjects\\SW2022\\DAY2\\P2003\\input.txt"));
-
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
 
-        num=new int[N+1];
-
+        nums = new int[N+1];
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
-            num[i]=Integer.parseInt(st.nextToken());
+            nums[i] = Integer.parseInt(st.nextToken());
         }
 
-        int High=0, Low=0, sum=num[0],result=0;
+        //pointer 2개는 모두 앞으로 "전진"만 한다.
+        int startPoint = 0;
+        int endPoint = 0;
 
+        int sum = nums[0]; //해당 구간의 합
 
-        while(true){
-
-
-            if(sum<M){
-
-                sum+=num[++High];
-
-            } else if (sum>M) {
-                sum-=num[Low++];
-
-            } else  {
-                result++;
-                sum-=num[Low++];
+        while (endPoint<N) {
+            if (sum < M) {
+                //합이 더 작다? 더 많이 더해줘야 한다.
+                sum += nums[++endPoint];
+            }else{
+                if(sum==M) count++;
+                sum-=nums[startPoint++];
             }
 
-            if(High==N) break;
-
+            //f(endPoint==N) break;
         }
 
-        System.out.println(result);
+        System.out.println(count);
+
     }
 }
