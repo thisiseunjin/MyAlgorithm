@@ -39,8 +39,7 @@ class Solution {
         if(a==parents[a]) return a;
         
         //계속 부모를 찾으려고 올라간다.
-        parents[a] = find(parents[a]);
-        return parents[a];
+        return parents[a] = find(parents[a]);
     }
     
     public void union(int a, int b){
