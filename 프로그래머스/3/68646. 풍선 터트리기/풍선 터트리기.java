@@ -13,22 +13,16 @@ class Solution {
         
         int min  = a[0];
         //내기준 왼쪽 최소값 저장
-        for(int i=1;i<N-1;i++){
+        for(int i=1;i<N;i++){
             left[i] = min;
-            // min = Math.min(a[i], min);
-             if(a[i] < min){
-                min = a[i];
-            }
+            min = Math.min(a[i], min);
         }
         
         //내기준 오른쪽 최소값 저장
         min = a[N-1];
-        for(int i=N-2;i>0;i--){
+        for(int i=N-1;i>0;i--){
             right[i]=min;
-            // min = Math.min(min, a[i]);
-             if(a[i] < min){
-                min = a[i];
-            }
+            min = Math.min(min, a[i]);
         }
         
         for(int i=1;i<N-1;i++){
