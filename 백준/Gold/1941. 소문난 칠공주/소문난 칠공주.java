@@ -50,7 +50,7 @@ public class Main {
         boolean[][] isSelected = new boolean[N][N];
 
         Queue<Point> q = new ArrayDeque<>();
-        q.add(new Point(start / N, start % N, 1));
+        q.add(new Point(start / N, start % N));
         isSelected[start / N][start % N] = true;
         int cnt = 0;
 
@@ -66,7 +66,7 @@ public class Main {
                 if (isSelected[nx][ny]) continue;    //이미 체크한 그것
                 if (!isVisited[nx][ny]) continue;    //내 조합에 없는 그것
 
-                q.add(new Point(nx, ny, p.depth + 1));
+                q.add(new Point(nx, ny));
                 isSelected[nx][ny] = true;
             }
         }
@@ -77,12 +77,11 @@ public class Main {
     }
 
     public static class Point {
-        int x, y, depth;
+        int x, y;
 
-        public Point(int x, int y, int depth) {
+        public Point(int x, int y) {
             this.x = x;
             this.y = y;
-            this.depth = depth;
         }
     }
 
