@@ -1,42 +1,52 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.lang.*;
+import java.util.Scanner;
 
 public class Main {
-    static String input;
-    static int zeroCount;
-    static int oneCount;
-    static StringBuilder sb = new StringBuilder();
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public static void main(String[] args) throws Exception {
+        Scanner in = new Scanner(System.in);
+        String s = in.nextLine();
 
-        input = br.readLine();
+        // 0의 개수 = num0
+        int num0 = 0;
 
-        for (int i = 0; i < input.length(); i++) {
-            char num = input.charAt(i);
-            if (num == '0') zeroCount++;
-            else oneCount++;
+        //1의 개수 = num1
+        int num1 = 0;
+
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            sb.append(c);
+            if( c == '0') num0 ++;
+            else num1 ++;
         }
 
-        zeroCount /= 2;
-        oneCount /= 2;
 
-//        sb.append("0".repeat(zeroCount));
-//        sb.append("1".repeat(oneCount));
+        // num0, num2 각각 절반값으로 교체
+        num0/=2;
+        num1/=2;
 
-        for (int i = 0; i < zeroCount; i++) {
-            sb.append("0");
+
+        // 1은 앞에서 없애기
+        for(int i = 0; i < sb.length(); i++){
+            if(sb.charAt(i)=='1') {
+                sb.setCharAt(i,'2');
+                num1 --;
+            }
+            if(num1 == 0) break;
         }
-        for (int i = 0; i < oneCount; i++) {
-            sb.append("1");
+
+        // 0은 뒤에서부터 없애기
+        for(int i = sb.length()-1; i > -1; i--){
+            if(sb.charAt(i)=='0') {
+                sb.setCharAt(i,'2');
+                num0 --;
+            }
+            if(num0 == 0) break;
         }
 
-        System.out.println(sb);
-
-
+        for(int i = 0; i<sb.length(); i++){
+            if(sb.charAt(i) == '1' | sb.charAt(i) == '0') System.out.print(sb.charAt(i));
+        }
     }
-
-
 }
