@@ -1,21 +1,31 @@
 import java.util.*;
 class Solution {
-    //구명 보트를 가장 적게 사용하는게 목적이다.
-    int N;
-    
     public int solution(int[] people, int limit) {
         int answer = 0;
+        
+        
+        //조건1 : 한번에 2명밖에 못탐
+        //조건2 : 두사람의 합은 limit를 초과할 수 없음
+        
         Arrays.sort(people);
         
-        int idx =0;
+        int start = 0;
+        int end = people.length-1;
         
-        for(int i = people.length-1;i>=idx;i--){
-            if(people[i]+people[idx]<=limit){
-                idx ++;
-                answer++;
+        while(start<=end){
+            int left = people[start];
+            int right = people[end];
+            if(left+right>limit) {
+                //뚱뚱해 못탐 금지 삐빅
+                end--;
             }else{
-                answer++;
+            
+            //오케이 성공
+            start++;
+            end--;
             }
+            answer++;
+            
         }
         
         
