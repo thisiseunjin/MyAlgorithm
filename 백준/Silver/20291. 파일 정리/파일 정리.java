@@ -17,11 +17,8 @@ public class Main {
             String name = st.nextToken();
             String type = st.nextToken();
 
-            if (map.containsKey(type)) {
-                map.put(type, map.get(type) + 1);
-            } else {
-                map.put(type, 1);
-            }
+
+            map.put(type, map.getOrDefault(type, 0) + 1);
         }
 
         Set<String> keySet = map.keySet();
