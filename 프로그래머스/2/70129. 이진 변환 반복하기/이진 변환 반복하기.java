@@ -1,38 +1,34 @@
 import java.util.*;
-import java.io.*;
+
 class Solution {
-    int removedCnt =0; //제거된 0의 개수
-    int tmpCnt=0;
+    int removed0 = 0; //제거된 0의 개수
+    int tmpCount = 0; //이진 변환을 수행한 횟수
+    
     public int[] solution(String s) {
-       
-        String str = s;
         
         while(true){
-            if(str.equals("1")) break;
+            if(s.equals("1")) break;
             
-            tmpCnt++;
-            str = toBinary(str);
+            tmpCount++;
+            s = func(s);
         }
         
-        int[] answer = new int[2];
-        answer[0] = tmpCnt;
-        answer[1] = removedCnt;
-        return answer;
+        return new int[]{tmpCount, removed0};
     }
     
-    public String toBinary(String s){
+    public String func(String x){
+        String str = "";
         
-        ArrayList<Character> list = new ArrayList<>();
-        for(int i=0;i<s.length();i++){
-            char ch = s.charAt(i);
-            if(ch=='0') {
-                removedCnt++;
-                continue;
-            }
-            list.add(ch);
-        }
+        //원본 문자열의 길이
+        int originLength = x.length();
         
-        return Integer.toBinaryString(list.size());
+        //0을 제거한다.
+        str = x.replace("0","");
         
+        //제거된 0의 개수
+        removed0+=(originLength - str.length());
+        
+        //x의 길이를 2진법으로 변환하여 반환한다.
+        return Integer.toBinaryString(str.length());
     }
 }
