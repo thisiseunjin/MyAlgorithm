@@ -1,57 +1,56 @@
+import java.util.*;
 class Solution {
-    static int[] parents;
-    static boolean[] isChecked;
-    static int result=0;
-    
+    ArrayList<Integer>[] list;
+    int N;
+    int result;
+    boolean[] isVisited;
+    boolean isPossible;
     public int solution(int n, int[][] computers) {
-        parents = new int[n];
-        isChecked = new boolean[n];
-        
-        //초기값은 자기 자신이다.
-        for(int i=0;i<n;i++){
-            parents[i] = i;
+        N = n;
+        list = new ArrayList[N];
+        isVisited = new boolean[N];
+        for(int i=0;i<N;i++){
+            list[i] = new ArrayList<>();
         }
         
-        for(int i=0;i<n;i++){
-            for(int j=0;j<n;j++){
-                //i와 연결된 친구들임!
-                if(i==j) continue;
-                if(computers[i][j]==1) union(i,j);
+        for(int i=0;i<N;i++){
+            for(int j=0;j<N;j++){
+                //연결되지 않음.
+                if(computers[i][j]==0) continue;
                 
+                int v1 = i;
+                int v2 = j;
+                
+                list[i].add(j);
             }
         }
         
-        
         for(int i=0;i<n;i++){
-            int p = find(i);
-            if(isChecked[p]) continue;
-            isChecked[p] = true;
+            if(isVisited[i]) continue;
+            dfs(i);
             result++;
+            
         }
+      
+        
         
         
         return result;
     }
     
-    public int find(int a){
-        //부모 찾기 시작~!
+    public boolean dfs(int v){
+        boolean flag = false;
         
-        if(a==parents[a]) return a;
+        //들어와서 방문 체크 진행
+        isVisited[v] = true;
         
-        //계속 부모를 찾으려고 올라간다.
-        return parents[a] = find(parents[a]);
-    }
-    
-    public void union(int a, int b){
+        //갈수 있는 곳이면? 간다.
+        for(int node : list[v]){
+            if(isVisited[node]) continue;
+            
+            dfs(node);
+        }
         
-        int rootA = parents[a];
-        int rootB = parents[b];
-        
-        if(rootA == rootB) return;  //둘을 같은 노드에 있다.
-        
-        //작은 쪽이 부모가 된다.
-        if(rootA>rootB){
-            parents[b] = rootA;
-        }else parents[a] = rootB;
+        return flag;
     }
 }
